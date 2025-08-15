@@ -1,0 +1,63 @@
+
+.s-embed-w {
+  max-width: 100%;
+  height: auto;
+}
+
+.s-embed-h {
+  max-height: 100%;
+  width: auto;
+}
+
+.s-cursor-pointer {
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+.link-color-current {
+  a {
+    color: currentColor;
+  }
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+
+.qx-focus-disable {
+
+  .q-focus-helper {
+    display: none;
+  }
+}
+
+@each $breakpoint, $breakpoint-width in $sizes {
+  @include media-breakpoint-down($breakpoint, $sizes) {
+    .hide-lt-#{$breakpoint}-after-1:nth-child(2n) {
+      display: none;
+    }
+    .hide-lt-#{$breakpoint}-after-1:nth-child(3n) {
+      display: none;
+    }
+  }
+}
+
+.hide-scrollbars {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.hide-scrollbars::-webkit-scrollbar {
+  display: none;
+}

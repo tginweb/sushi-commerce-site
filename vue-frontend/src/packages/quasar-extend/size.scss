@@ -1,0 +1,37 @@
+@each $breakpoint, $breakpoint-width in $sizes {
+    @include media-breakpoint-up($breakpoint, $sizes) {
+      .full-width-#{$breakpoint} {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+    }
+}
+
+.full-width-lt-lg {
+  @media (max-width: $breakpoint-lg) {
+      width: 100% !important;
+  }
+}
+
+.full-width-lt-md {
+  @media (max-width: $breakpoint-md) {
+    width: 100% !important;
+  }
+}
+
+.full-width-lt-sm {
+  @media (max-width: $breakpoint-sm) {
+    width: 100% !important;
+  }
+}
+
+
+.min-width-auto {
+  min-width: auto;
+}
+
+.min-height-auto {
+  min-height: auto;
+}
+

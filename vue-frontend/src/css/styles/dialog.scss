@@ -1,0 +1,33 @@
+
+.q-dialog__backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.--select-popup {
+
+  .q-field__append {
+    display: none;
+  }
+
+  input {
+    border: 1px solid #eee;
+    padding: 22px 9px;
+    margin-top: 10px;
+  }
+  .q-dialog__inner {
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+  .q-select__dialog {
+    width: 100vw;
+    max-width: 100vw;
+  }
+  .q-field__control {
+    background-color: #FFF !important;
+
+    &:before {
+      display: none !important;
+    }
+
+  }
+}

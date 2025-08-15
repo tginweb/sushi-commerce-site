@@ -1,0 +1,18 @@
+
+body.desktop .q-hoverable.is-active {
+
+  > .q-focus-helper {
+
+    background: currentColor;
+
+    opacity: .15;
+
+    &:before {
+      opacity: .1
+    }
+
+    &:after {
+      opacity: .4
+    }
+  }
+}

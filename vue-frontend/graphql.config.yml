@@ -1,0 +1,6 @@
+schema: graphql.schema.graphql
+extensions:
+  endpoints:
+    Remote GraphQL Endpoint:
+      url: http://dev.sushi-new.prod.loc/api-new/graphql/
+      introspect: true

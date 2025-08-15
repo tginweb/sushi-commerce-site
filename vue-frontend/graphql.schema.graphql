@@ -1,0 +1,2873 @@
+""""""
+type AccessError implements ErrorInterface {
+  authRedirect: Boolean
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+""""""
+type ActionMobile {
+  addBacklink: Boolean
+  addSession: Boolean
+  await: Boolean
+  code: String
+  replace: Boolean
+  title: String
+  titleAuto: Boolean
+  url: String
+}
+
+""""""
+type ActionWeb {
+  code: String
+  title: String
+  url: String
+}
+
+""""""
+type AppClient {
+  CLIENT_ID: String
+  CURRENT_SESSION_ID: String
+  DEBUG_PARAMS: AppClientDebugParams
+  ID: Int!
+  MOBILE_PUSH_TOKEN: String
+  SESSION_ID: String
+  TOKEN: String
+  USER_ID: Int
+  WEB_PUSH_TOKEN: String
+}
+
+""""""
+type AppClientDebugParams {
+  eventsTransport: Json
+}
+
+type AppProductRecordset {
+  info: QueryInfo!
+  nodes: [Product!]!
+}
+
+enum AttrPaymentTypeEnum {
+  card
+  cash
+  online
+}
+
+enum AttrTimeModeEnum {
+  custom
+  nearest
+}
+
+enum AttrTransportTypeEnum {
+  courier
+  pickup
+}
+
+""""""
+type Basket {
+  BASE_PRICE: Float
+  CLIENT_CHANGED_AT: Int!
+  COUNT: Int
+  GIFTS: [Int]!
+  HASH: String
+  ITEMS: [BasketItem!]!
+  MIN_PRICE: Float
+  MIN_PRICE_REACHED: Boolean
+  OFFERS: [SpecialOffer]
+  PRICE: Float
+  QUANTITY: Float
+  SYNCED: Boolean
+  TS: String
+  WEIGHT: Float
+}
+
+""""""
+type BasketBuildItem {
+  ELEMENT: Product
+  PRODUCT_ID: Int
+  QUANTITY: Int
+}
+
+""""""
+type BasketItem {
+  BASE_PRICE: Float!
+  BENEFIT: BasketItemBenefitType!
+  BUILD: [BasketBuildItem]
+  CLIENT_CHANGED_AT: Int!
+  CLIENT_ID: String!
+  COMMENT: String
+  DESC: String
+  DISABLE: Boolean
+  DISABLE_REASON: String
+  DISCOUNTS: [BasketItemDiscount!]!
+  ELEMENT: Product
+  FINAL_PRICE: Float!
+  FINAL_PRICE_BASE: Float
+  ID: Int!
+  INPUT_PROPS_HASH: String
+  MEASURE_NAME: String
+  NAME: String
+  ORDER_ID: Int
+  PAID: Boolean
+  PARENT_ID: Int!
+  PRICE: Float!
+  PRICE_BASE: Float!
+  PRODUCT_ID: Int!
+  PROPS: [BasketItemProp]
+  QUANTITY: Float!
+  UUID: String
+}
+
+enum BasketItemBenefitType {
+  gift
+  special
+}
+
+""""""
+type BasketItemDiscount {
+  AMOUNT: Float!
+  BASE_PRICE: Float!
+  DISCOUNTED_PRICE: Float!
+  RULE: String
+  TARGET: BasketItemDiscountTarget!
+  TYPE: BasketItemDiscountType!
+}
+
+enum BasketItemDiscountTarget {
+  basket
+  delivery
+  product
+  section
+  total
+}
+
+enum BasketItemDiscountType {
+  fixed
+  percent
+}
+
+""""""
+type BasketItemProp {
+  CODE: String
+  NAME: String
+  VALUE: Json
+  XML_ID: String
+}
+
+""""""
+type BasketRule {
+  ACTIONS: [BasketRuleActionInterface!]!
+  ALL_STOP: Boolean
+  CAPTION: String
+  CHILDREN: [BasketRule!]!
+  CODE: String!
+  CONDITIONS: [BasketRuleCondition!]!
+  HOTEST: Boolean
+  ID: Int
+  LEVEL_STOP: Boolean
+  NAME: String
+  NAME_TEMPLATE: String
+  PARENT: String
+  PERCENT: Int
+  TYPE: BasketRuleType!
+}
+
+""""""
+type BasketRuleActionDiscount implements BasketRuleActionInterface {
+  AMOUNT: Int!
+  AMOUNT_SURCHARGE: Int!
+  ID: Int
+  MODE: DiscountModeEnum!
+  NAME: String
+  PRODUCT_IDS: [Int!]!
+  SECTION_IDS: [Int!]!
+  TARGET: DiscountTargetEnum!
+  TYPE: BasketRuleActionTypeEnum!
+}
+
+interface BasketRuleActionInterface {
+  ID: Int
+  NAME: String
+  TYPE: BasketRuleActionTypeEnum!
+}
+
+enum BasketRuleActionTypeEnum {
+  discount
+  gift
+}
+
+""""""
+type BasketRuleCondition {
+  CHILDREN: [BasketRuleCondition!]!
+  CODE: String
+  ID: Int
+  IN: [Json!]
+  MAX: Int
+  MIN: Int
+  NAME: String
+  NOT: Boolean
+  TYPE: BasketRuleConditionTypeEnum!
+  VALUE: Json
+}
+
+enum BasketRuleConditionTypeEnum {
+  attr_value
+  bonus_filled
+  coupons_filled
+  delivery_id
+  group_and
+  group_or
+  order_price
+  payment_type
+  paysystem_id
+  product_id
+  section_id
+  transport_type
+}
+
+enum BasketRuleType {
+  common
+  discount
+  gift
+}
+
+""""""
+type BasketRulesResulBenefitProduct {
+  PRODUCT_ID: Int
+  QUANTITY: Int
+  TYPE: BasketRulesResulBenefitProductType!
+}
+
+enum BasketRulesResulBenefitProductType {
+  productGift
+  productSpecial
+}
+
+""""""
+type BasketRulesResult {
+  ALLOW: [String]!
+  BENEFIT_PRODUCTS: [BasketRulesResulBenefitProduct!]!
+  DENY: [String]!
+  DISCOUNTS_BASKET: [BasketRuleActionDiscount!]!
+  DISCOUNTS_DELIVERY: [BasketRuleActionDiscount!]!
+  DISCOUNTS_PRODUCT: [BasketRuleActionDiscount!]!
+  DISCOUNTS_SECTION: [BasketRuleActionDiscount!]!
+  DISCOUNTS_TOTAL: [BasketRuleActionDiscount!]!
+}
+
+""""""
+type BonusLevel {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PROPERTIES: BonusLevelProps!
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+type BonusLevelProps {
+  ACCUMULATION_PERCENT: Int
+  COLOR: String
+  MAX_USE_PERCENT: Int
+  MONTH_SPENT_MAX: Int
+  MONTH_SPENT_MIN: Int
+  ORDERS_SUMM: String
+}
+
+""""""
+input CaptchaInput {
+  ANSWER: String
+  PROVIDER: String
+  SID: String
+  VALUE: Json
+}
+
+""""""
+input ClientCardFilterInput {
+  BONUSES: IntFilterInput
+  BONUSES_EXPIRE: DateFilterInput
+  BONUSES_PERCENT: IntFilterInput
+  CLIENT_PHONE: StringFilterInput
+  DIS_FIRST_ORDER: IntFilterInput
+  DIS_SELF_PICKUP: IntFilterInput
+  FETCHED: Boolean
+  FETCHED_TIME: DateFilterInput
+  ID: IntFilterInput
+  LEVEL_CODE: StringFilterInput
+  LEVEL_NAME: StringFilterInput
+  MONTH_SPENT: IntFilterInput
+  USER_ID: IntFilterInput
+}
+
+type ClientCardRecordset {
+  info: QueryInfo!
+  nodes: [SaleClientCard!]!
+}
+
+""""""
+type ClientEmit {
+  body: String
+  cls: String
+  createdAt(format: String, formatType: DateFormatEnum): Json!
+  eventData: Json
+  eventGroup: String
+  eventName: String
+  id: Int
+  message: String
+  targetClientId: String
+  targetUserId: Int
+  title: String
+}
+
+""""""
+type ClientNotice {
+  actionItems: [MenuItem!]!
+  body: String
+  bodyHtml: String
+  cls: String
+  createdAt(format: String, formatType: DateFormatEnum): Json!
+  eventData: Json
+  eventGroup: String
+  eventName: String
+  haveBody: Boolean
+  id: Int!
+  image: String
+  isReaded: Boolean
+  message: String
+  offerId: Int
+  showAs: String
+  targetClientId: String
+  targetCode: String
+  targetUserId: Int
+  title: String
+}
+
+""""""
+type Command {
+  code: String
+  confirm: Boolean
+  params: Json
+  path: String
+  type: String
+}
+
+""""""
+type CommonError implements ErrorInterface {
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+""""""
+type CompanyOffice {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PROPERTIES: CompanyOfficeProps!
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+input CompanyOfficeInput {
+  CODE: String
+  IBLOCK_ID: Int
+  NAME: String
+  PROPERTIES: CompanyOfficeInputProps
+}
+
+input CompanyOfficeInputProps {
+  ADDRESS: String
+  COORDINATES: CoordinatesInput
+  EMAIL: String
+  GIS_URL: String
+  MAIN: String
+  PAYSYSTEM_ID: Int
+  PHONES: [String!]
+  REQUISITES: String
+  ROLES: [Int!]
+  SERVICE_ID: String
+  WORKTIME: String
+  WORKTIME_FRI: String
+  WORKTIME_MON: String
+  WORKTIME_SAT: String
+  WORKTIME_SUN: String
+  WORKTIME_THU: String
+  WORKTIME_TUE: String
+  WORKTIME_WED: String
+}
+
+type CompanyOfficeProps {
+  ADDRESS: String
+  COORDINATES: Coordinates
+  EMAIL: String
+  PHONES: [String!]!
+  REQUISITES: ElementPropValueHtml
+  ROLES: [ListValue!]!
+  SERVICE_ID: String
+  WORKTIME: String
+}
+
+""""""
+type CompanyVacancy {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+type Condition {
+  eq: Json
+  gt: Json
+  lt: Json
+  path: String
+}
+
+""""""
+type ConstructorBuild {
+  CONSTRUCTOR_CODE: String
+  CONSTRUCTOR_URL: String
+  SOSTAV: [ConstructorBuildItem]
+}
+
+""""""
+type ConstructorBuildItem {
+  ELEMENT: ConstructorElement
+  ELEMENT_ID: Int
+  QUANTITY: Int
+}
+
+""""""
+type ConstructorElement {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  BENEFITS: [ProductBenefit!]!
+  BUILD: ConstructorBuild
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  FLAGS: [ProductFlag!]!
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  IS_SALE_SPECIAL: Boolean
+  MEASURE: ProductMeasure
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  OFFERS: [Product]
+  OFFER_PARENT_ELEMENT: Product
+  PARENT: Product
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PRICE: ProductPrice!
+  ROOT_SECTION: Section
+  SALES_COUNT: Int
+  SECTION: Section
+  SECTIONS: [Section]
+  SET_ITEMS: [ProductSetItem!]!
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: [ProductTag]
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  WEIGHT: Int
+  XML_ID: String
+}
+
+""""""
+type Coordinates {
+  LAT: Float!
+  LON: Float!
+}
+
+""""""
+input CoordinatesInput {
+  LAT: Float
+  LON: Float
+}
+
+""""""
+type Coupon {
+  COUPON: String
+  ID: Int!
+  NAME: String
+  PRODUCT: Product
+  PRODUCT_ID: Int
+}
+
+""""""
+type CourierState {
+  ARRIVAL_TIME: String
+  ARRIVAL_TIME_CAPTION: String
+  CAR_COLOR: String
+  CAR_NUMBER: String
+  COORDS: Json
+}
+
+""""""
+input DateFilterInput {
+  eq: String
+  gt: String
+  in: [String]
+  lt: String
+  not: String
+}
+
+enum DateFormatEnum {
+  date
+  datetime
+}
+
+""""""
+type DeliveryCalculate {
+  ADDRESS_COORDS: String
+  DELIVERY_ADDRESS: String
+  DELIVERY_HASH: String
+  ID: Int!
+  NEED_TIME: Int
+  NEED_TIME_FORMATTED: String
+  ORDER_ID: Float
+  ORDER_PRICE: Int
+  PHONE: String
+  REQUEST_DELTA: Int
+  REQUEST_TIME: Int
+  REQUEST_TIME_FORMATTED: String
+  RES_DELIVER_PRICE: Float
+  RES_OFFICE_1C_ID: Int
+  RES_OFFICE_ID: Int
+  RES_STATUS: MessageTypeEnum
+  RES_TIME: Int
+  RES_TIME_FORMATTED: String
+  TIME_MODE: TimeModeEnum
+  TRANSPORT_TYPE: String
+  VORDER_ID: Int
+}
+
+""""""
+type DeliveryComputed {
+  CALCULATE_DESCRIPTION: Json
+  CALCULATE_ERRORS: Json
+  CALC_TIMESTAMP: Int
+  DELIVERY_DISCOUNT_PRICE: String
+  DELIVERY_DISCOUNT_PRICE_FORMATED: String
+  ID: Int!
+  NAME: String
+  PERIOD_TEXT: String
+  PRICE: Float
+  PRICE_FORMATED: String
+  SERVICE: DeliveryService
+}
+
+""""""
+type DeliveryService {
+  ID: Int
+  NAME: String
+  PARENT_ID: Int
+  TRANSPORT_TYPE: DeliveryTransportTypeEnum
+}
+
+enum DeliveryTransportTypeEnum {
+  courier
+  pickup
+}
+
+""""""
+type DeliveryZone {
+  ACTIVE: Boolean
+  CODE: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  ID: Int
+  NAME: String
+  PREVIEW_TEXT(format: Boolean): Json
+  SORT: Int
+}
+
+""""""
+type Discount {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PROPERTIES: DiscountProps!
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+enum DiscountModeEnum {
+  fixed
+  percent
+}
+
+type DiscountProps {
+  ACTION_DISCOUNT_PERCENT: Int
+  ACTION_PRODUCT_IDS: [Int!]!
+  ACTION_PRODUCT_IDS_ENTITIES: [Element!]!
+  ACTION_SECTION_IDS: [String!]!
+  CONDITION: [DiscountPropsCONDITION!]!
+  CONDITION_ORDER_PRICE_FROM: [Int!]!
+  CONDITION_TRANSPORT_TYPE: [String!]!
+  DATE: String
+  HOTEST: Boolean
+  NAME_TEMPLATE: String
+}
+
+type DiscountPropsCONDITION {
+  DATE: String
+  ORDER_PRICE_FROM: Int
+  TRANSPORT_TYPE: String
+}
+
+enum DiscountTargetEnum {
+  basket
+  delivery
+  product
+  total
+}
+
+""""""
+type Element {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+input ElementInput {
+  CODE: String
+  IBLOCK_ID: Int
+  NAME: String
+}
+
+""""""
+input ElementListFilterInput {
+  ACTIVE: Boolean
+  CODE: StringFilterInput
+  IBLOCK_CODE: StringFilterInput
+  IBLOCK_ID: IntFilterInput
+  IBLOCK_SECTION_ID: IntFilterInput
+  ID: IntFilterInput
+  NAME: StringFilterInput
+  SORT: IntFilterInput
+}
+
+""""""
+type ElementMeta {
+  DESCRIPTION: String
+  KEYWORDS: String
+  PAGE_TITLE: String
+  TITLE: String
+}
+
+""""""
+type ElementPropValueHtml {
+  TEXT: String
+  TYPE: String
+}
+
+""""""
+type ElementPropValueWithDesc {
+  DESC: String
+  VALUE: String
+}
+
+""""""
+type EntityInfo {
+  name: String
+  role: String
+  sectionPaths: String
+  type: String
+  urls: EntityInfoUrls!
+}
+
+""""""
+type EntityInfoUrls {
+  index: String
+  section: String
+  view: String
+}
+
+""""""
+type EntityProp {
+  CODE: String
+  DESC: Json
+  FILE: Image
+  FILES: [Image]
+  ID: Int
+  MUL: Boolean
+  NAME: String
+  TYPE: String
+  VAL: Json
+  VAL_ENUM_ID: Json
+  VAL_ID: Json
+}
+
+interface ErrorInterface {
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+enum ErrorNameEnum {
+  access_not_authorized
+  access_restricted
+  common
+  common_input_error
+  common_invalid_format
+  common_not_found
+  es_blocked
+  es_rate_limit
+  es_rejected
+  field_format_invalid
+  field_required
+  otp_attempts
+  otp_code_wrong
+  rate_limit
+}
+
+enum ErrorTypeEnum {
+  access
+  common
+  external_service
+  form
+  otp
+  rate
+}
+
+""""""
+type ExternalServiceError implements ErrorInterface {
+  authRedirect: Boolean
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+""""""
+type FaqQuestion {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+type FaqQuestionRecordset {
+  info: QueryInfo!
+  nodes: [FaqQuestion!]!
+}
+
+""""""
+type FormError implements ErrorInterface {
+  data: Json
+  fieldLabel: String
+  fieldMessage: String
+  fieldName: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+""""""
+type GeoObject {
+  address_full: String
+  address_original: String
+  address_short: String
+  area: String
+  area_fias_id: String
+  area_format: String
+  area_original: String
+  city: String
+  city_fias_id: String
+  city_format: String
+  city_original: String
+  district: String
+  district_fias_id: String
+  district_format: String
+  district_original: String
+  geo_lat: Float
+  geo_lon: Float
+  house: String
+  house_fias_id: String
+  house_format: String
+  house_original: String
+  region: String
+  region_fias_id: String
+  region_format: String
+  region_original: String
+  street: String
+  street_fias_id: String
+  street_format: String
+  street_original: String
+  street_path_full: String
+  street_path_short: String
+}
+
+""""""
+type Image {
+  FILE_SIZE: String
+  ID: ID
+  ORIGINAL_NAME: String
+  SRC: String
+  SRC_DEFAULT: String
+}
+
+""""""
+input IntFilterInput {
+  eq: Int
+  exists: Boolean
+  gt: Int
+  in: [Int]
+  lt: Int
+  not: Int
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar Json
+
+""""""
+type ListValue {
+  CODE: String!
+  ID: Int!
+  VALUE: String!
+}
+
+""""""
+type Menu {
+  children: [MenuItem]
+  code: String
+  id: String
+}
+
+""""""
+type MenuItem {
+  badge: Json
+  bgColor: String
+  blank: Boolean
+  children: [MenuItem]
+  color: String
+  command: Command
+  dense: Boolean
+  disable: Boolean
+  display: [String]
+  entityId: String
+  entityType: String
+  flat: Boolean
+  icon: String
+  id: String
+  image: Image
+  imageId: Int
+  infoLabel: String
+  label: String
+  loading: Boolean
+  native: Boolean
+  onClick: Json
+  outline: Boolean
+  params: Json
+  parent: String
+  roles: [String]
+  textColor: String
+  url: String
+  width: String
+}
+
+""""""
+type MenuItemMobile {
+  action: ActionMobile
+  backgroundColor: String
+  badge: Json
+  color: String
+  condition: Condition
+  icon: String
+  id: String
+  image: Image
+  imageId: Int
+  label: String
+  labelColor: String
+  link: Boolean
+  outline: Boolean
+  outlineColor: String
+  outlineWidth: Int
+  params: Json
+  parent: String
+  roles: Json
+  templatable: Boolean
+  templatableProps: [String]
+}
+
+""""""
+type Message {
+  actions: [MenuItem!]!
+  category: String
+  code: String
+  data: Json
+  duration: Int
+  id: String
+  message: String
+  messages: [String]
+  name: String
+  notify: Boolean
+  rel: String
+  status: String
+  title: String
+  type: MessageTypeEnum
+}
+
+enum MessageTypeEnum {
+  error
+  info
+  success
+  warning
+}
+
+""""""
+type Mutation {
+  catalog_product_order(elementId: Int, model: Json): Response!
+  company_office_update(id: Int!, model: CompanyOfficeInput!): Response!
+  company_vacancy_order(id: Int, model: Json): Response!
+  notice_pub_push_send_queue: Response!
+  notice_pub_push_update_token(pushToken: String): Response!
+  notice_pub_sync_readed(ids: Json): NoticePubSyncReadedResult
+  review_order_guest_review(
+    """Order service id"""
+    orderServiceId: Int
+    type: String
+  ): ReviewOrderGuestReviewResult
+  review_service_review(model: Json): ReviewServiceReviewResult
+  sale_client_card_create(model: ElementInput!): Response!
+  sale_client_card_delete(id: Int): Response!
+  sale_client_card_update(id: Int!, model: ElementInput!): Response!
+  sale_order_cancel(comment: String, hash: String, id: Int, reason: String): SaleOrderCancelResult
+  sale_order_pay_online(hash: String, id: Int, savePaymentType: Boolean, type: String): SaleOrderPayOnlineResult
+  sale_order_repeat(hash: String, id: Int): SaleOrderRepeatResult
+  sale_profile_calc_delivery(attrs: OrderAttributesValueInput, basket: Json, profileId: Int, timeMode: TimeModeEnum, timeNeed: Int): SaleProfileCalcDeliveryResult
+  sale_profile_default(id: Int): SaleProfileDefaultResult
+  sale_profile_delete(id: Int): SaleProfileDeleteResult
+  sale_profile_save(attrs: OrderAttributesValueInput, id: Int): SaleProfileSaveResult
+  sale_vorder_apply(order: VorderInput, params: Json): SaleVorderApplyResult
+  sale_vorder_basket(action: String, build: Json, order: VorderInput): SaleVorderBasketResult
+  sale_vorder_coupon(action: String, couponCode: String, order: VorderInput): SaleVorderCouponResult
+  sale_vorder_new: SaleVorderNewResult
+  sale_vorder_reserve(order: VorderInput): SaleVorderReserveResult
+  sale_vorder_submit(order: VorderInput): SaleVorderSubmitResult
+  sale_vorder_sync(order: VorderInput): SaleVorderSyncResult
+  user_app_client(debugParams: Json, mobilePushToken: String, webPushToken: String): Response!
+  user_auth_create_sa(clientIds: Json, code: String, phone: String): Response!
+  user_auth_login_confirm(captcha: CaptchaInput, clientId: String, code: String, confirmMode: String, disableBasketTransfer: Boolean, phone: String, pushToken: String, sid: String): UserAuthLoginConfirmResult
+  user_auth_login_request(captcha: CaptchaInput, confirmMode: String, phone: String): UserAuthLoginRequestResult
+  user_auth_login_start(captcha: CaptchaInput, phone: String): UserAuthLoginStartResult
+  user_logout: Response!
+  user_profile_all_filled: Response!
+  user_profile_birthday(birthday: String): Response!
+  user_profile_child(action: String, child: UserFamilyInput): Response!
+  user_profile_email(action: String, code: String, email: String): Response!
+  user_profile_name(name: String): Response!
+  user_profile_save(form: Json): Response!
+}
+
+type NoticePubSyncReadedResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: [ClientNotice]
+  state: ResponseState!
+  success: Boolean
+}
+
+""""""
+type Offer {
+  ACTIONS_MOBILE: [MenuItemMobile]
+  ACTIONS_WEB: [MenuItem]
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  BANNER_HOR_DESKTOP: Image
+  BANNER_HOR_MOBILE: Image
+  BANNER_INTERNAL_TEXT: String
+  BANNER_SQUARE: Image
+  CODE: String
+  CONTENT_IMAGE: Image
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  DISCOUNT_ID: Int
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  IS_HOT: Boolean
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  OFFER_NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SLIDES: [OfferSlide]
+  SORT: Int
+  STARTUP_SHOW: String
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  VARS: Json
+  VID: String
+  VIEW_MODE: String
+  XML_ID: String
+}
+
+type OfferRecordset {
+  info: QueryInfo!
+  nodes: [Offer!]!
+}
+
+""""""
+type OfferSlide {
+  BG_COLOR: String
+  CODE: String
+  CONTENT_HTML: String
+  CONTENT_IMAGE: Image
+  CONTENT_TYPE: String
+  ID: Int
+  NAME: String
+}
+
+""""""
+input OfficeFilterInput {
+  ACTIVE: Boolean
+  CODE: StringFilterInput
+  IBLOCK_CODE: StringFilterInput
+  IBLOCK_ID: IntFilterInput
+  IBLOCK_SECTION_ID: IntFilterInput
+  ID: IntFilterInput
+  NAME: StringFilterInput
+  SORT: IntFilterInput
+}
+
+type OfficeRecordset {
+  info: QueryInfo!
+  nodes: [CompanyOffice!]!
+}
+
+""""""
+type Order {
+  ACCESS_HASH: String
+  ACCOUNT_NUMBER: String
+  ACTIONS: Json
+  ADDRESS_FOR_1C: String
+  ATTR: OrderAttributesValue!
+  ATTRS: [OrderAttribute!]!
+  BASKET: [BasketItem!]!
+  BONUSES: Int
+  BUYER_NAME: String
+  CANCEL_REASONS: [OrderCancelReason]
+  CONTRACT_NUM: String
+  COUPONS: [Coupon!]!
+  COURIER_STATE: CourierState
+  CSTATUS_COLOR: String
+  CSTATUS_ID: String
+  CSTATUS_NAME: String
+  DATE_FORMATTED(format: String, formatType: DateFormatEnum): Json
+  DATE_INSERT(format: String, formatType: DateFormatEnum): Json
+  DATE_PAYED(format: String, formatType: DateFormatEnum): Json
+  DATE_TIME_FORMATTED(format: String, formatType: DateFormatEnum): Json
+  DATE_UPDATE(format: String, formatType: DateFormatEnum): Json
+  DELIVERY: DeliveryService
+  DELIVERY_ADDRESS_FULL: String
+  DELIVERY_CALCULATED: Boolean
+  DELIVERY_DATETIME(format: String, formatType: DateFormatEnum): Json
+  DELIVERY_DEPARTMENT: CompanyOffice
+  DELIVERY_FREE_FROM_PRICE: Int
+  DELIVERY_ID: Int
+  DISCOUNT_PERCENT: Float
+  DISCOUNT_REASON: String
+  EDU_GROUP_NUM: String
+  ID: Int
+  IS_ACTIVE: Boolean
+  IS_CANCELED: Boolean
+  IS_CAN_CANCEL: Boolean
+  IS_CAN_PAY: Boolean
+  IS_CAN_PAY_BILL: Boolean
+  IS_CAN_PAY_ONLINE: Boolean
+  IS_FINISHED: Boolean
+  IS_PAID: Boolean
+  PAYMENTS: [Payment]
+  PAYSYSTEM: Paysystem
+  PAYSYSTEM_ID: Int
+  PAYSYSTEM_IS_ONLINE: Boolean
+  PAY_LINK: String
+  PERSON_TYPE_ID: Int
+  PICKUP_DEPARTMENT: CompanyOffice
+  PRICE: Float
+  PRICE_BASKET: Float
+  PRICE_BASKET_BASE: Float
+  PRICE_DELIVERY: Float
+  PRICE_DELIVERY_BASE: Float
+  PRICE_DISCOUNT: Float
+  PRICE_PAY: Float
+  PRICE_PAY_BASE: Float
+  PRICE_TOTAL: Float
+  PRICE_TOTAL_BASE: Float
+  SCOPE: OrderScope
+  SCOPE_ENTITY: Command
+  SECRET_URL: String
+  SERVICE_ID: Int
+  STATUS: OrderStatus
+  STATUS_COLOR: String
+  STATUS_ID: String
+  STATUS_NAME: String
+  STUDENT_FIO: String
+  SYNCED: Boolean
+  TS: String
+  URL: String
+  USER: User
+  USER_DESCRIPTION: String
+  USER_ID: Int
+}
+
+""""""
+type OrderAttribute {
+  CODE: OrderAttributeCodeEnum!
+  DEFAULT_VALUE: Json
+  KIND: OrderAttributeKindEnum!
+  NAME: String
+  OPTIONS: [OrderAttributeOption]
+  TYPE: OrderAttributeTypeEnum!
+  VALUE: Json
+  VALUE_VIEW: Json
+}
+
+enum OrderAttributeCodeEnum {
+  ADDRESS
+  ADDRESS_IS_CUSTOM
+  ADDRESS_SOURCE
+  APP_VERSION
+  BENEFIT_TYPE
+  BONUSES
+  CASH_SUM
+  CITY
+  CITY_FIAS_ID
+  COMMENT
+  DATA
+  DATE
+  DATETIME
+  DELIVERY_DEPARTMENT
+  DELIVERY_FREE_FROM_PRICE
+  DELIVERY_FREE_UPDATED_TIME
+  DELIVERY_ID
+  DELIVERY_PRICE
+  DEPARTMENT_SERVICE_ID
+  DETAILS
+  DISCOUNT_PERCENT
+  DISCOUNT_REASON
+  EMAIL
+  ENTRANCE
+  FIO
+  FLAT
+  FLOOR
+  GIFTS_LIST
+  HOUSE
+  HOUSE_COORDS
+  HOUSE_FIAS_ID
+  INTERCOM
+  LIFT
+  LOCATION
+  NEED_CONFIRM
+  PAYMENT_TYPE
+  PAY_SYSTEM_ID
+  PERSONS_NUMBER
+  PHONE
+  PICKUP_DEPARTMENT
+  PRIVATE_HOUSE
+  PROFILE_COMMENT
+  PROFILE_DEFAULT
+  PROFILE_ID
+  PROMOCODE
+  RECEIVER_ANOTHER
+  RECEIVER_NAME
+  RECEIVER_PHONE
+  RESERVE_AVAILABLE_TIME
+  RESERVE_NEED_TIME
+  RESERVE_REQUEST_TIME
+  RESERVE_STATUS
+  RESERVE_SUCCESS_HASH
+  RESERVE_SUCCESS_REQUEST_TIME
+  ROISTAT
+  SERVICE_SEND
+  SERVICE_SEND_START
+  SETTLEMENT
+  SETTLEMENT_FIAS_ID
+  SOURCE
+  STREET
+  STREET_COORDS
+  STREET_FIAS_ID
+  STREET_PATH
+  STRUCT
+  TEST_TIME
+  TIME
+  TIME_MODE
+  TRANSPORT_TYPE
+  USER_DESCRIPTION
+  UUID
+  VORDER_ID
+  WITH_OPERATOR
+}
+
+enum OrderAttributeKindEnum {
+  field
+  prop
+}
+
+""""""
+type OrderAttributeOption {
+  DESCRIPTION: String
+  DISABLE: Boolean
+  ICON: String
+  ID: Int
+  NAME: String
+  NAME_SHORT: String
+  SORT: Int
+  VALUE: Json
+  XML_ID: String
+}
+
+enum OrderAttributeTypeEnum {
+  boolean
+  date
+  enum
+  json
+  location
+  number
+  string
+}
+
+""""""
+type OrderAttributesValue {
+  ADDRESS: String
+  ADDRESS_IS_CUSTOM: Boolean
+  ADDRESS_IS_CUSTOM_STRING: String
+  ADDRESS_SOURCE: String
+  APP_VERSION: String
+  BENEFIT_TYPE: String
+  BENEFIT_TYPE_STRING: String
+  BONUSES: Int
+  CASH_SUM: Int
+  CITY: String
+  CITY_FIAS_ID: String
+  COMMENT: String
+  DATA: OrderData
+  DATE: String
+  DATETIME: Int
+  DELIVERY_DEPARTMENT: Int
+  DELIVERY_FREE_FROM_PRICE: String
+  DELIVERY_FREE_UPDATED_TIME: Int
+  DELIVERY_ID: Int
+  DELIVERY_ID_STRING: String
+  DELIVERY_PRICE: Int
+  DEPARTMENT_SERVICE_ID: Int
+  DETAILS: Boolean
+  DETAILS_STRING: String
+  DISCOUNT_PERCENT: Int
+  DISCOUNT_REASON: String
+  EMAIL: String
+  ENTRANCE: String
+  FIO: String
+  FLAT: String
+  FLOOR: String
+  GIFTS_LIST: String
+  HOUSE: String
+  HOUSE_COORDS: Coordinates
+  HOUSE_COORDS_STRING: String
+  HOUSE_FIAS_ID: String
+  INTERCOM: String
+  LIFT: Boolean
+  LIFT_STRING: String
+  LOCATION: String
+  NEED_CONFIRM: Boolean
+  NEED_CONFIRM_STRING: String
+  PAYMENT_TYPE: AttrPaymentTypeEnum
+  PAYMENT_TYPE_STRING: String
+  PAY_SYSTEM_ID: Int
+  PAY_SYSTEM_ID_STRING: String
+  PERSONS_NUMBER: Int
+  PHONE: String
+  PICKUP_DEPARTMENT: Int
+  PRIVATE_HOUSE: Boolean
+  PRIVATE_HOUSE_STRING: String
+  PROFILE_COMMENT: String
+  PROFILE_DEFAULT: Boolean
+  PROFILE_DEFAULT_STRING: String
+  PROFILE_ID: Int
+  PROMOCODE: String
+  RECEIVER_ANOTHER: Boolean
+  RECEIVER_ANOTHER_STRING: String
+  RECEIVER_NAME: String
+  RECEIVER_PHONE: String
+  RESERVE_AVAILABLE_TIME: Int
+  RESERVE_NEED_TIME: Int
+  RESERVE_REQUEST_TIME: Int
+  RESERVE_STATUS: String
+  RESERVE_SUCCESS_HASH: String
+  RESERVE_SUCCESS_REQUEST_TIME: Int
+  ROISTAT: String
+  SERVICE_SEND: Boolean
+  SERVICE_SEND_START: Int
+  SERVICE_SEND_STRING: String
+  SETTLEMENT: String
+  SETTLEMENT_FIAS_ID: String
+  SOURCE: String
+  STREET: String
+  STREET_COORDS: Coordinates
+  STREET_COORDS_STRING: String
+  STREET_FIAS_ID: String
+  STREET_PATH: String
+  STRUCT: Json
+  TEST_TIME: Int
+  TEST_TIME_STRING: String
+  TIME: String
+  TIME_MODE: AttrTimeModeEnum
+  TIME_MODE_STRING: String
+  TRANSPORT_TYPE: AttrTransportTypeEnum
+  USER_DESCRIPTION: String
+  UUID: String
+  VORDER_ID: Int
+  WITH_OPERATOR: Boolean
+  WITH_OPERATOR_STRING: String
+}
+
+""""""
+input OrderAttributesValueInput {
+  ADDRESS: String
+  ADDRESS_IS_CUSTOM: Boolean
+  ADDRESS_SOURCE: String
+  APP_VERSION: String
+  BENEFIT_TYPE: String
+  BONUSES: Int
+  CASH_SUM: Int
+  CITY: String
+  CITY_FIAS_ID: String
+  COMMENT: String
+  DATA: OrderDataInput
+  DATE: String
+  DATETIME: Int
+  DELIVERY_DEPARTMENT: Int
+  DELIVERY_FREE_FROM_PRICE: String
+  DELIVERY_FREE_UPDATED_TIME: Int
+  DELIVERY_ID: Int
+  DELIVERY_PRICE: Int
+  DEPARTMENT_SERVICE_ID: Int
+  DETAILS: Boolean
+  DISCOUNT_PERCENT: Int
+  DISCOUNT_REASON: String
+  EMAIL: String
+  ENTRANCE: String
+  FIO: String
+  FLAT: String
+  FLOOR: String
+  GIFTS_LIST: String
+  HOUSE: String
+  HOUSE_COORDS: CoordinatesInput
+  HOUSE_FIAS_ID: String
+  INTERCOM: String
+  LIFT: Boolean
+  LOCATION: String
+  NEED_CONFIRM: Boolean
+  PAYMENT_TYPE: AttrPaymentTypeEnum
+  PAY_SYSTEM_ID: Int
+  PERSONS_NUMBER: Int
+  PHONE: String
+  PICKUP_DEPARTMENT: Int
+  PRIVATE_HOUSE: Boolean
+  PROFILE_COMMENT: String
+  PROFILE_DEFAULT: Boolean
+  PROFILE_ID: Int
+  PROMOCODE: String
+  RECEIVER_ANOTHER: Boolean
+  RECEIVER_NAME: String
+  RECEIVER_PHONE: String
+  RESERVE_AVAILABLE_TIME: Int
+  RESERVE_NEED_TIME: Int
+  RESERVE_REQUEST_TIME: Int
+  RESERVE_STATUS: String
+  RESERVE_SUCCESS_HASH: String
+  RESERVE_SUCCESS_REQUEST_TIME: Int
+  ROISTAT: String
+  SERVICE_SEND: Boolean
+  SERVICE_SEND_START: Int
+  SETTLEMENT: String
+  SETTLEMENT_FIAS_ID: String
+  SOURCE: String
+  STREET: String
+  STREET_COORDS: CoordinatesInput
+  STREET_FIAS_ID: String
+  STREET_PATH: String
+  STRUCT: String
+  TEST_TIME: Int
+  TIME: String
+  TIME_MODE: AttrTimeModeEnum
+  TRANSPORT_TYPE: AttrTransportTypeEnum
+  USER_DESCRIPTION: String
+  UUID: String
+  VORDER_ID: Int
+  WITH_OPERATOR: Boolean
+}
+
+""""""
+type OrderCancelReason {
+  CODE: String
+  NAME: String
+}
+
+""""""
+type OrderData {
+  paramArray: Json
+  paramInt: Int
+  paramString: String
+}
+
+input OrderDataInput {
+  paramArray: Json
+  paramInt: Int
+  paramString: String
+}
+
+""""""
+input OrderFilter {
+  ACCOUNT_NUMBER: StringFilterInput
+  CANCELED: Boolean
+  DATE_DAY: Int
+  DATE_MONTH: Int
+  DATE_PAYED_DAY: Int
+  DATE_PAYED_MONTH: Int
+  DATE_PAYED_YEAR: Int
+  DATE_YEAR: Int
+  ELEMENT_NAME: StringFilterInput
+  EMAIL: StringFilterInput
+  ID: IntFilterInput
+  MODE: String
+  PAYED: Boolean
+  PAY_SYSTEM_ID: IntFilterInput
+  PHONE: StringFilterInput
+  PROP_CONTRACT_NUM: StringFilterInput
+  PROP_EDU_GROUP_NUM: StringFilterInput
+  PROP_EMAIL: StringFilterInput
+  PROP_FIO: StringFilterInput
+  PROP_PHONE: StringFilterInput
+  PROP_PRODUCT_SECTIONS: StringFilterInput
+  PROP_STUDENT_FIO: StringFilterInput
+  SECTION_ID: IntFilterInput
+  STATUS_ID: StringFilterInput
+  USER_ID: IntFilterInput
+}
+
+""""""
+type OrderProfile {
+  ATTR: OrderProfileAttributesValue!
+  ATTRS: [OrderAttribute!]!
+  CAPTION: String
+  COMPANY_ID: Int
+  COORDS: Coordinates
+  DELIVERY_FREE_FROM_PRICE: Int!
+  ID: Int!
+  IS_DEFAULT: Boolean
+  NAME: String!
+  PERSON_TYPE: PersonType
+  PERSON_TYPE_ID: Int!
+  USER: User
+  USER_ID: Int!
+}
+
+""""""
+type OrderProfileAttributesValue {
+  ADDRESS: String
+  ADDRESS_IS_CUSTOM: Boolean
+  ADDRESS_SOURCE: String
+  CITY: String
+  CITY_FIAS_ID: String
+  ENTRANCE: String
+  FLAT: String
+  FLOOR: String
+  HOUSE: String
+  HOUSE_COORDS: Coordinates
+  HOUSE_FIAS_ID: String
+  LIFT: Boolean
+  PRIVATE_HOUSE: Boolean
+  PROFILE_COMMENT: String
+  PROFILE_DEFAULT: Boolean
+  RECEIVER_ANOTHER: Boolean
+  RECEIVER_NAME: String
+  RECEIVER_PHONE: String
+  SETTLEMENT: String
+  SETTLEMENT_FIAS_ID: String
+  STREET: String
+  STREET_COORDS: Coordinates
+  STREET_FIAS_ID: String
+  STREET_PATH: String
+  STRUCT: Json
+  TEST_TIME: Int
+}
+
+type OrderProfileRecordset {
+  info: QueryInfo!
+  nodes: [OrderProfile!]!
+}
+
+""""""
+type OrderScope {
+  CONTRACT_NUM: String
+  ENTITY_ID: Int
+  ENTITY_TYPE: String
+}
+
+""""""
+type OrderStatus {
+  COLOR: String
+  ID: String
+  NAME: String
+  SORT: Int
+  TYPE: String
+}
+
+""""""
+type OtpError implements ErrorInterface {
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  param: Int
+  rel: Json
+  type: ErrorTypeEnum
+}
+
+""""""
+type Page {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CONTENT_CHUNKS: [PageContentChunk]
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATA_CHUNKS: [PageDataChunk]
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+type PageContentChunk {
+  CODE: String
+  GROUP: String
+  NAME: String
+  TYPE: String
+  VALUE: String
+}
+
+""""""
+type PageDataChunk {
+  CODE: String
+  TYPE: String
+  VALUE: Json
+}
+
+type PageRecordset {
+  info: QueryInfo!
+  nodes: [Page!]!
+}
+
+""""""
+type Payment {
+  DATE_PAID(format: String, formatType: DateFormatEnum): Json
+  ID: Int
+  IS_PAID: Boolean
+  ORDER_ID: String
+  ORDER_URL: String
+  PAYSYSTEM: Paysystem
+  PAYSYSTEM_ID: Int
+  PAY_NAV: Json
+  PS_INVOICE_ID: String
+  PS_STATUS: String
+  PS_STATUS_CODE: String
+  PS_STATUS_ID: String
+  PS_STATUS_NAME: String
+  SUM: Float
+  SUM_PAID: Float
+}
+
+""""""
+type PaymentType {
+  CODE: String
+  ICON: String
+  NAME: String
+}
+
+""""""
+type Paysystem {
+  CODE: String
+  DESCRIPTION: String
+  ID: Int
+  IS_BILL: Boolean
+  IS_INNER: Boolean
+  IS_ONLINE: Boolean
+  IS_ONLINE_DELAYED: Boolean
+  NAME: String
+}
+
+""""""
+type PersonType {
+  CODE: String
+  ID: Int
+  IS_COMPANY: Boolean
+  NAME: String
+  RESTRICTED: Boolean
+  SORT: Int
+}
+
+""""""
+type Product {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  BENEFITS: [ProductBenefit!]!
+  BUILD: ConstructorBuild
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  FLAGS: [ProductFlag!]!
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  IMAGE: Image
+  IS_SALE_SPECIAL: Boolean
+  MEASURE: ProductMeasure
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  OFFERS: [Product]
+  OFFER_PARENT_ELEMENT: Product
+  PARENT: Product
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PRICE: ProductPrice!
+  PROPERTIES: ProductProps!
+  ROOT_SECTION: Section
+  SALES_COUNT: Int
+  SECTION: Section
+  SECTIONS: [Section]
+  SET_ITEMS: [ProductSetItem!]!
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: [ProductTag]
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  WEIGHT: Int
+  XML_ID: String
+}
+
+""""""
+type ProductBenefit {
+  IS_GIFT: Boolean
+  PRODUCT: Product
+  PRODUCT_ID: Int!
+  QUANTITY: Int!
+}
+
+""""""
+input ProductFilterInput {
+  ACTIVE: Boolean
+  CODE: StringFilterInput
+  IBLOCK_CODE: StringFilterInput
+  IBLOCK_ID: IntFilterInput
+  IBLOCK_SECTION_ID: IntFilterInput
+  ID: IntFilterInput
+  NAME: StringFilterInput
+  SORT: IntFilterInput
+}
+
+""""""
+type ProductFlag {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+type ProductMeasure {
+  NAME: String
+  RATIO: Float
+}
+
+""""""
+type ProductPrice {
+  DISCOUNTED: Float!
+  DISCOUNT_PERCENT: Float!
+  PRICE: Float!
+}
+
+type ProductProps {
+  ADDITIVES: [Int!]!
+  ADDITIVES_ENTITIES: [Element!]!
+  AVAILABLE_SCHEDULE: [ProductPropsAVAILABLE_SCHEDULE!]!
+  BELKI: String
+  BENEFITS: [ProductPropsBENEFITS!]!
+  COMPONENT_IS: ListValue
+  FLAG_ITEMS: [Int!]!
+  FLAG_ITEMS_ENTITIES: [Element!]!
+  HOLIDAY: ListValue
+  IS_HIT: Boolean
+  KKAL: Int
+  NEW: ListValue
+  PHOTOV2: Image
+  ROLLS: [Int!]!
+  ROLLS_ENTITIES: [Element!]!
+  SALE_SPECIAL: Boolean
+  SERVICE_ID: String
+  SET_ITEMS: [ProductPropsSET_ITEMS!]!
+  SOSTAV: [ElementPropValueWithDesc!]!
+  TAGS: [Int!]!
+  TAGS_ENTITIES: [Element!]!
+  UGLEVODY: String
+  UPSALE_ELEMENTS: Int
+  UPSALE_ELEMENTS_ENTITY: Element
+  UPSALE_SECTIONS: [String!]!
+  WEIGHT: String
+  ZHIRY: String
+}
+
+type ProductPropsAVAILABLE_SCHEDULE {
+  DAY: ListValue
+  FROM: String
+  TO: String
+}
+
+type ProductPropsBENEFITS {
+  IS_GIFT: Boolean
+  PRODUCT: Int
+  PRODUCT_ENTITY: Element
+  QUANTITY: Int
+}
+
+type ProductPropsSET_ITEMS {
+  PRODUCT_ID: Int
+  PRODUCT_ID_ENTITY: Element
+  QUANTITY: String
+}
+
+""""""
+type ProductSection {
+  ACTIVE: Boolean
+  CHILDREN: [Section!]!
+  CODE: String
+  DATE_CREATE(format: String): Json
+  DEPTH_LEVEL: Int
+  DESCRIPTION: String
+  DESCRIPTION_TYPE: String
+  DETAIL_PICTURE: Image
+  ELEMENT_CNT: Int
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_EXTERNAL_ID: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_TYPE_ID: String
+  ID: Int!
+  LEFT_MARGIN: Int
+  META: ElementMeta
+  NAME: String
+  PARENT: ProductSection
+  PARENTS: [ProductSection]
+  PICTURE: Image
+  PROPERTIES: ProductSectionProps!
+  REPLACE_LINK: String
+  RIGHT_MARGIN: Int
+  SEARCHABLE_CONTENT(format: Boolean): String
+  SECTION_PAGE_URL: String
+  SORT: Int
+  TIMESTAMP_X(format: String): Json
+}
+
+type ProductSectionProps {
+  CATEGORY_CLASS: String
+  DATA: Int
+  DATA_FORMATTED: String
+  DAY: Int
+  ENUM: DeliveryTransportTypeEnum
+  FLOAT: Float
+  HINT: String
+  HTML: String
+  INT: Int
+  LIST: ListValue
+  LOGIC: Boolean
+  MENU_BG_COLOR: String
+  MENU_COLOR: String
+  MENU_FOCUSED_ICON: Image
+  MENU_ICON: Image
+  M_CARD: String
+  NAV_TITLE: [String]!
+  NAV_URL: [String]!
+  REPLACE_LINK: String
+  SEARCH_IN: String
+  UPSALE_SECTIONS: [Int]!
+  UPSALE_SECTIONS_ENTITY: [Section]!
+}
+
+""""""
+type ProductSetItem {
+  PRODUCT: Product
+  PRODUCT_ID: Int!
+  QUANTITY: Int!
+}
+
+""""""
+type ProductTag {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+""""""
+type Query {
+  camera_element_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Webcam!]!
+  catalog_product_all(filter: ProductFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Product!]!
+  catalog_product_fav_list(filter: ProductFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Product!]!
+  catalog_product_fav_list2(type: String): [Product!]!
+  catalog_product_list(filter: ProductFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Product!]!
+  catalog_product_recordset(filter: ProductFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): AppProductRecordset
+  catalog_product_search(elementDetail: Boolean, query: String): SearchResult
+  catalog_product_search_new(elementDetail: Boolean, filterSuggestion: Json, query: String): [Product!]!
+  catalog_product_section_list(filter: SectionFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [ProductSection!]!
+  catalog_product_single(filter: ProductFilterInput, id: Int, nav: QueryNavInput, where: Json): Product!
+  company_office_list(filter: OfficeFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [CompanyOffice!]!
+  company_office_recordset(filter: OfficeFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): OfficeRecordset
+  company_office_single(filter: OfficeFilterInput, id: Int, nav: QueryNavInput, where: Json): CompanyOffice!
+  company_vacancy_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [CompanyVacancy!]!
+  company_vacancy_recordset(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): VacancyRecordset
+  company_vacancy_single(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, where: Json): CompanyVacancy!
+  entity_info_list: [EntityInfo]
+  faq_element_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [FaqQuestion!]!
+  faq_element_recordset(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): FaqQuestionRecordset
+  faq_element_single(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, where: Json): FaqQuestion!
+  geo_geocoder_location_by_address(address: String): GeoObject
+  geo_geocoder_locations_by_coords(lat: Float, lon: Float): [GeoObject]
+  list: [ClientEmit]
+  menu_menus: [Menu]
+  notice_pub_list: [ClientNotice!]!
+  offer_common_list: [Offer!]!
+  offer_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Offer!]!
+  offer_recordset(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): OfferRecordset
+  offer_single(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, where: Json): Offer!
+  offer_user_list: [Offer!]!
+  page_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Page!]!
+  page_recordset(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): PageRecordset
+  page_route(URL: String): Page
+  page_single(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, where: Json): Page!
+  review_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Review!]!
+  sale_bonus_level_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [BonusLevel!]!
+  sale_client_card_apply_by_phone(phone: String): SaleClientCard
+  sale_client_card_fetch(isScope: Boolean, refetch: Boolean): SaleClientCard
+  sale_client_card_list(filter: ClientCardFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [SaleClientCard!]!
+  sale_client_card_recordset(filter: ClientCardFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): ClientCardRecordset
+  sale_client_card_single(filter: ClientCardFilterInput, id: Int, nav: QueryNavInput, where: Json): SaleClientCard!
+  sale_delivery_zones: [DeliveryZone!]!
+  sale_order_active_list(filter: OrderFilter, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [Order!]!
+  sale_order_ensure_payment(hash: String, id: Int, paymentId: Int): Payment
+  sale_order_statuses: [OrderStatus!]
+  sale_profile_list(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): [OrderProfile!]!
+  sale_profile_recordset(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, nocache: Boolean, where: Json): OrderProfileRecordset
+  sale_profile_single(filter: ElementListFilterInput, id: Int, nav: QueryNavInput, where: Json): OrderProfile!
+  sale_vorder_basket_products: [Product]
+  sale_vorder_current(check: Boolean): VorderCurrent
+  sale_vorder_summary: VorderSummary
+  search_suggestions(query: String): [SearchSuggestion!]!
+  search_suggestions_popular: [SearchSuggestion!]!
+  user_app_client: AppClient
+  user_fetch(sessionWrite: Boolean): User
+  user_session: UserSession
+}
+
+""""""
+type QueryInfo {
+  limit: Int
+  nextPage: Int
+  page: Int
+  pages: Int
+  total: Int
+}
+
+""""""
+input QueryNavInput {
+  asc: Boolean
+  limit: Int
+  page: Int
+  postLimit: Int
+  postSort: String
+  postSortAsc: Boolean
+  sort: String
+  sortAscending: Boolean
+  sortField: String
+}
+
+""""""
+type RateError implements ErrorInterface {
+  data: Json
+  fieldMessage: String
+  message: String
+  messages: [String]!
+  name: ErrorNameEnum
+  rel: Json
+  ttl: Int
+  type: ErrorTypeEnum
+}
+
+""""""
+type Response {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: Json
+  state: ResponseState!
+  success: Boolean
+}
+
+""""""
+type ResponseRate {
+  limited: Boolean
+  ttl: Int
+}
+
+""""""
+type ResponseRedirect {
+  restricted: Boolean
+  ttl: Int
+}
+
+""""""
+type ResponseState {
+  events: Json
+  messages: [Message!]!
+  rate: ResponseRate
+  redirect: ResponseRedirect
+}
+
+""""""
+type Review {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CHILDREN: [Review]
+  CODE: String
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  ELEMENT: Element
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  ORDER: Order
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+type ReviewOrderGuestReviewResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: ReviewOrderGuestReviewResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type ReviewOrderGuestReviewResultPayload {
+  departmentId: Int
+  departmentName: String
+  redirectUrl: String
+}
+
+type ReviewServiceReviewResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: Review
+  state: ResponseState!
+  success: Boolean
+}
+
+""""""
+type SaleClientCard {
+  BONUSES: Int
+  BONUSES_EXPIRE: Int
+  BONUSES_EXPIRE_FORMATTED: String
+  BONUSES_PERCENT: Float
+  CLIENT_PHONE: String
+  DISCOUNTS: [Discount!]!
+  DIS_FIRST_ORDER: Float
+  DIS_SELF_PICKUP: Float
+  EXPIRED: Boolean
+  FETCHED: Boolean
+  FETCHED_ACTUAL: Boolean
+  FETCHED_TIME: Int
+  FETCHED_TIME_FORMATTED: String
+  ID: Int!
+  LEVEL: BonusLevel
+  LEVEL_CODE: String
+  LEVEL_NAME: String
+  MONTH_SPENT: Float
+  TRANSPORT: DeliveryTransportTypeEnum
+  USER_ID: Int
+}
+
+type SaleOrderCancelResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: [Order!]
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleOrderPayOnlineResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleOrderPayOnlineResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleOrderPayOnlineResultPayload {
+  action: ActionWeb
+  order: Order
+}
+
+type SaleOrderRepeatResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: Order
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleProfileCalcDeliveryResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: DeliveryCalculate
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleProfileDefaultResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: OrderProfile
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleProfileDeleteResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: Int
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleProfileSaveResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: OrderProfile
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderApplyResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderApplyResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderApplyResultPayload {
+  vorder: Vorder
+}
+
+type SaleVorderBasketResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderBasketResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderBasketResultPayload {
+  vorder: Vorder
+}
+
+type SaleVorderCouponResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderCouponResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderCouponResultPayload {
+  coupon: Coupon
+  vorder: Vorder
+}
+
+type SaleVorderNewResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderNewResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderNewResultPayload {
+  vorder: Vorder
+}
+
+type SaleVorderReserveResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderReserveResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderReserveResultPayload {
+  calc: DeliveryCalculate
+  vorder: Vorder
+}
+
+type SaleVorderSubmitResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderSubmitResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderSubmitResultPayload {
+  order: Order
+  orderId: Int
+  orderUrl: String
+  vorder: Vorder
+}
+
+type SaleVorderSyncResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: SaleVorderSyncResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type SaleVorderSyncResultPayload {
+  vorder: Vorder
+}
+
+""""""
+type SearchResult {
+  ELEMENTS: [Product!]!
+  SECTIONS: [Section!]!
+}
+
+""""""
+type SearchSuggestion {
+  data: SearchSuggestionData
+  label: String
+  value: String
+}
+
+""""""
+type SearchSuggestionData {
+  entityId: Int
+  entityRole: String
+  entityTitle: String
+  entityTypeCode: String
+  entityTypeId: String
+  entityTypeName: String
+  hint: String
+  type: String
+}
+
+""""""
+type Section {
+  ACTIVE: Boolean
+  CHILDREN: [Section!]!
+  CODE: String
+  DATE_CREATE(format: String): Json
+  DEPTH_LEVEL: Int
+  DESCRIPTION: String
+  DESCRIPTION_TYPE: String
+  DETAIL_PICTURE: Image
+  ELEMENT_CNT: Int
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_EXTERNAL_ID: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_TYPE_ID: String
+  ID: Int!
+  LEFT_MARGIN: Int
+  META: ElementMeta
+  NAME: String
+  PARENT: Section
+  PARENTS: [Section]
+  PICTURE: Image
+  REPLACE_LINK: String
+  RIGHT_MARGIN: Int
+  SEARCHABLE_CONTENT(format: Boolean): String
+  SECTION_PAGE_URL: String
+  SORT: Int
+  TIMESTAMP_X(format: String): Json
+}
+
+""""""
+input SectionFilterInput {
+  ACTIVE: Boolean
+  CATEGORY_CLASS: StringFilterInput
+  CODE: StringFilterInput
+  DATA: StringFilterInput
+  DAY: StringFilterInput
+  DEPTH_LEVEL: IntFilterInput
+  ENUM: StringFilterInput
+  FLOAT: StringFilterInput
+  GLOBAL_ACTIVE: Boolean
+  HAS_ELEMENT: IntFilterInput
+  HINT: StringFilterInput
+  HTML: StringFilterInput
+  IBLOCK_ACTIVE: Boolean
+  IBLOCK_ID: IntFilterInput
+  IBLOCK_NAME: StringFilterInput
+  IBLOCK_TYPE: StringFilterInput
+  ID: IntFilterInput
+  INT: StringFilterInput
+  LEFT_BORDER: IntFilterInput
+  LEFT_MARGIN: IntFilterInput
+  LIST: StringFilterInput
+  LOGIC: StringFilterInput
+  MENU_BG_COLOR: StringFilterInput
+  MENU_COLOR: StringFilterInput
+  MENU_FOCUSED_ICON: StringFilterInput
+  MENU_ICON: StringFilterInput
+  M_CARD: StringFilterInput
+  NAME: StringFilterInput
+  NAV_TITLE: StringFilterInput
+  NAV_URL: StringFilterInput
+  REPLACE_LINK: StringFilterInput
+  RIGHT_BORDER: IntFilterInput
+  RIGHT_MARGIN: IntFilterInput
+  SEARCH_IN: StringFilterInput
+  SECTION_ID: IntFilterInput
+  UPSALE_SECTIONS: StringFilterInput
+  XML_ID: StringFilterInput
+}
+
+""""""
+type SpecialOffer {
+  ELEMENT: Product
+  ELEMENT_ID: Int
+  MIN_PRICE: Int
+  MODE: String
+  TYPE: String
+  TYPE_INFO: SpecialOfferType
+}
+
+""""""
+type SpecialOfferType {
+  CODE: String
+  COLOR: String
+  NAME: String
+}
+
+""""""
+input StringFilterInput {
+  eq: String
+  exists: Boolean
+  in: [String]
+  like: String
+  not: String
+}
+
+enum TimeModeEnum {
+  custom
+  nearest
+}
+
+""""""
+type User {
+  AVATAR: UserAvatar
+  EMAIL: String
+  FAMILY: [UserFamily]
+  GREETING_NAME: String
+  GROUPS_INFO: [UserGroup]
+  ID: Int
+  LAST_NAME: String
+  LOGIN: String
+  LOGIN_FORMAT: String
+  NAME: String
+  NAME_FULL: String
+  NAME_TEASER: String
+  PERSONAL_BIRTHDAY: String
+  PERSONAL_PHOTO: Image
+  PERSON_TYPE_ID: Int
+  PHONE: String
+  PHONE_FORMATTED: String
+  PROFILE_FILLED: Boolean
+  PROFILE_GIFT_USED: Boolean
+  PROMOCODE: String
+  PROPS: [EntityProp]
+  ROLES: Json
+  SECOND_NAME: String
+  SESSION_ID: String
+}
+
+""""""
+type UserAuthConfirm {
+  CODE: String!
+  COLOR: String
+  CONFIRM_CONTENT_MOBILE: String
+  CONFIRM_CONTENT_WEB: String
+  CONFIRM_STEPS: [UserAuthConfirmStep]
+  ICON: String
+  LIST_BUTTON_MOBILE: MenuItemMobile
+  LIST_BUTTON_WEB: MenuItem
+  LIST_CAPTION: String
+  LIST_NAME: String
+  NAME: String!
+  RESEND_TITLE: String
+}
+
+""""""
+type UserAuthConfirmStep {
+  CAPTION: String
+  CODE: String
+  NAME: String
+}
+
+type UserAuthLoginConfirmResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: UserAuthLoginConfirmResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type UserAuthLoginConfirmResultPayload {
+  appClient: AppClient
+  redirect: Json
+  sessionId: String
+  userId: Int
+}
+
+type UserAuthLoginRequestResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: UserAuthLoginRequestResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type UserAuthLoginRequestResultPayload {
+  id: String
+  sid: String
+}
+
+type UserAuthLoginStartResult {
+  error: ErrorInterface
+  errors: [ErrorInterface!]!
+  payload: UserAuthLoginStartResultPayload
+  state: ResponseState!
+  success: Boolean
+}
+
+type UserAuthLoginStartResultPayload {
+  confirmModes: [UserAuthConfirm!]!
+}
+
+""""""
+type UserAvatar {
+  ELEMENT_ID: Int
+  IMAGE: Image
+}
+
+""""""
+type UserFamily {
+  BIRTHDAY: String
+  ID: Int!
+  NAME: String
+  RELATION: String
+  USER_ID: String
+}
+
+""""""
+input UserFamilyInput {
+  BIRTHDAY: String
+  ID: Int
+  NAME: String
+}
+
+""""""
+type UserGroup {
+  ID: Int
+  NAME: String
+  TYPE: String
+}
+
+""""""
+type UserSession {
+  FUSER_ID: Int
+  SESSION_ID: String
+  USER_ID: Int
+}
+
+type VacancyRecordset {
+  info: QueryInfo!
+  nodes: [CompanyVacancy!]!
+}
+
+""""""
+type Vorder {
+  ATTR: OrderAttributesValue!
+  ATTRS: [OrderAttribute!]!
+  BASKET(recalc: Boolean): Basket
+  BONUSES: Int
+  COUPONS: [Coupon!]!
+  DELIVERY_DEPARTMENT_ID: Int
+  DEPARTMENT_ID: Int
+  EMAIL: String
+  FIELDS_RAW: Json
+  FUSER_ID: Int
+  ID: Int!
+  ORDER: Order
+  ORDER_ID: Int
+  PHONE: String
+  PICKUP_DEPARTMENT_ID: Int
+  PROFILE_ID: Int
+  PROPS_RAW: Json
+  SESSION_ID: String
+  USER: User
+  USER_ID: Int
+}
+
+""""""
+type VorderCurrent {
+  ATTR: OrderAttributesValue!
+  ATTRS: [OrderAttribute!]!
+  BASKET(recalc: Boolean): Basket
+  BASKET_RULES: [BasketRule]
+  BASKET_RULES_RESULT: [BasketRulesResult]
+  BONUSES: Int
+  BONUSES_AVAILABLE: Int
+  BONUSES_PERCENT: Int
+  COUPONS: [Coupon!]!
+  COUPON_CAN_ADD: Boolean
+  DELIVERIES: [DeliveryComputed!]!
+  DELIVERY_CALCULATED: Boolean
+  DELIVERY_DEPARTMENT_ID: Int
+  DELIVERY_FREE_FROM_PRICE: Float
+  DEPARTMENTS: [CompanyOffice]!
+  DEPARTMENT_ID: Int
+  DISCOUNTS: [Discount!]!
+  EMAIL: String
+  FIELDS_RAW: Json
+  FUSER_ID: Int
+  ID: Int!
+  ORDER: Order
+  ORDER_ID: Int
+  PAYMENT_TYPES: [PaymentType!]!
+  PERSON_TYPES: [PersonType!]!
+  PHONE: String
+  PICKUP_DEPARTMENT_ID: Int
+  PROFILES: [OrderProfile]!
+  PROFILE_ID: Int
+  PROPS_RAW: Json
+  RESPONSE_STATE: ResponseState
+  SESSION_ID: String
+  TRANSPORT_TYPES: [DeliveryTransportTypeEnum!]!
+  TS: String
+  USER: User
+  USER_ID: Int
+}
+
+""""""
+input VorderInput {
+  attrs: OrderAttributesValueInput
+  basket: Json
+}
+
+""""""
+type VorderSummary {
+  EMAIL: String
+  FUSER_ID: Int
+  ID: Int
+  PHONE: String
+}
+
+""""""
+type Webcam {
+  ACTIVE: Boolean
+  ACTIVE_FROM(format: String): Json
+  ACTIVE_TO: Int
+  CREATED_BY: Int
+  CREATED_USER_NAME: String
+  DATE_CREATE(format: String): Json
+  DETAIL_PICTURE: Image
+  DETAIL_TEXT(format: Boolean): String
+  DETAIL_TEXT_TYPE: String
+  EXTERNAL_ID: String
+  IBLOCK_CODE: String
+  IBLOCK_ID: Int
+  IBLOCK_SECTION_ID: Int
+  IBLOCK_SECTION_IDS: [Int!]!
+  ID: Int!
+  META: ElementMeta
+  MODIFIED_BY: Int
+  NAME: String
+  PATH: [Section]
+  PREVIEW_PICTURE: Image
+  PREVIEW_TEXT(format: Boolean): String
+  PREVIEW_TEXT_TYPE: String
+  PROPERTIES: WebcamProps!
+  ROOT_SECTION: Section
+  SECTION: Section
+  SECTIONS: [Section]
+  SHOW_COUNTER: Int
+  SHOW_COUNTER_START(format: String): Json
+  SORT: Int
+  TAGS: String
+  TIMESTAMP_X(format: String): Json
+  URL: String
+  XML_ID: String
+}
+
+type WebcamProps {
+  CODE: String
+}

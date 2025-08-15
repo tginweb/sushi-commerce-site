@@ -1,0 +1,61 @@
+.q-btn {
+  text-transform: none;
+  text-decoration: none;
+
+  &.--icon-same {
+    .q-icon {
+      font-size: 1em;
+    }
+  }
+
+  &.--normal {
+    .q-btn__content {
+      line-height: 1;
+    }
+  }
+
+  &.--no-minheight {
+    .q-btn__wrapper {
+      min-height: auto;
+    }
+  }
+
+  &.--no-wrapper {
+    .q-btn__wrapper {
+      padding: 0;
+    }
+  }
+
+  &.--dense-2 {
+    .q-btn__wrapper {
+      padding: 0.4em 0.385em;
+      line-height: 1;
+      min-height: auto;
+    }
+  }
+
+  &.--icon-only {
+    .q-btn__wrapper {
+      padding: 0.3em 0.3em;
+      line-height: 1;
+      min-height: auto;
+    }
+    svg.q-icon {
+      font-size: 1em;
+    }
+  }
+
+  &.--leading-none {
+    .q-btn__wrapper {
+      line-height: 1;
+      min-height: auto;
+    }
+  }
+
+
+}
+
+
+.q-btn svg.q-icon {
+  font-size: 1.415em;
+}

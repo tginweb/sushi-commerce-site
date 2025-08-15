@@ -1,0 +1,8 @@
+@each $breakpoint, $typo in $screen-typo {
+  @include media-breakpoint-up($breakpoint, $sizes) {
+    body {
+      font-size: map-get($typo, "font-size");
+      line-height: map-get($typo, "line-height");
+    }
+  }
+}

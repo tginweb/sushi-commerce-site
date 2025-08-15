@@ -1,0 +1,32 @@
+.qx-pt-first-none {
+  &:first-child {
+    padding-top: 0;
+  }
+}
+
+.qx-pb-last-none {
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.qx-mt-first-none {
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.qx-mb-last-none {
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.qx-mb-1px {
+  margin-bottom: 1px;
+}
+
+.qx-mb-2px {
+  margin-bottom: 1px;
+}
+

@@ -1,0 +1,41 @@
+.profile-section-header {
+  margin-bottom: 16px;
+  font-size: 17px;
+
+  @media (max-width: $breakpoint-md-max) {
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+}
+
+
+
+.profile-widget {
+
+
+  .c-inner {
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, .12);
+    border-radius: 12px;
+  }
+
+  .c-bottom {
+    font-weight: 500;
+  }
+
+  .c-header-more-link {
+
+    margin-right: -5px;
+
+    .q-icon {
+      font-size: 0.8em;
+      margin-top: 2px;
+    }
+  }
+
+  @media (min-width: $breakpoint-lg-max) {
+    &.theme-card {
+      //min-height: 190px;
+    }
+  }
+
+}

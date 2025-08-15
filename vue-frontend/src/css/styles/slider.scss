@@ -1,0 +1,44 @@
+
+.slick-prev,
+.slick-next {
+  &:before {
+    color: #111 !important;
+  }
+
+  @media (max-width: $breakpoint-sm-max) {
+    display:none !important;
+  }
+}
+
+.slick-dots-lines {
+  display: flex !important;
+  justify-content: space-between;
+  padding: 0 16px;
+  margin: 0;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+
+  li {
+    list-style-type: none;
+    width: 100%;
+    margin: 0 5px;
+    background-color: #fff;
+    line-height: 0px;
+    cursor: pointer;
+    border-radius: 5px;
+    opacity: 0.5;
+
+    button {
+      width: 100%;
+      visibility: hidden;
+    }
+
+    &.slick-active {
+      opacity: 1;
+    }
+  }
+}

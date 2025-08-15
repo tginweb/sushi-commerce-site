@@ -1,0 +1,184 @@
+.ui-content-style {
+
+  h1, h2, h3, h4, h5, h6 {
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h3 {
+    font-size: 16px;
+  }
+
+  @media (min-width: $breakpoint-sm-min) {
+    h3 {
+      font-size: 17px;
+    }
+  }
+
+  @media (min-width: $breakpoint-md-min) {
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  @media (min-width: $breakpoint-lg-min) {
+    h3 {
+      font-size: 20px;
+    }
+  }
+
+  @media (min-width: $breakpoint-xl-min) {
+    h3 {
+      font-size: 21px;
+    }
+  }
+
+
+  p {
+    //line-height: 1.65em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid #EEE;
+  }
+
+  iframe {
+    width: 100%;
+    height: 400px;
+  }
+
+  figure {
+    margin: 1em 0 1em 0;
+  }
+
+  .wp-video {
+    max-width: 100%;
+  }
+
+
+  video {
+    max-width: 100%;
+  }
+
+  ul {
+    list-style: square;
+    padding: 0;
+    margin: 0 0 0.5em 1.3em;
+
+    li {
+      position: relative;
+      padding: 0 0 0 0.35em;
+      margin: 0 0 0.7em 0;
+      line-height: 1.75em;
+    }
+  }
+
+  ol {
+    padding: 0;
+    margin: 0 0 0.5em 1.4em;
+
+    li {
+      margin: 0 0 0.7em 1em;
+      padding: 0 0 0 0.3em;
+    }
+  }
+
+  a:not(.q-btn) {
+    text-decoration: underline;
+  }
+
+  .alignleft {
+    float: left;
+    margin-right: 1rem;
+  }
+
+  .alignright {
+    float: right;
+    margin-left: 1rem;
+  }
+
+  .aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  blockquote {
+    color: #2d5a5f;
+    font-size: 22.5px;
+    line-height: 130%;
+    position: relative;
+    padding: 0;
+    margin: 0 27px 27px 0;
+
+    p {
+      line-height: 130%;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (min-width: $breakpoint-sm-min) and (max-width: $breakpoint-sm-max) {
+      width: 110%;
+      margin: 0 27px 27px -10%;
+    }
+
+    @media (min-width: $breakpoint-md-max) {
+      width: 110%;
+      margin: 0 27px 27px -10%;
+    }
+
+  }
+
+  table.s-data {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    th,
+    td {
+      padding: 12px 15px;
+      border: 1px solid #dddddd;
+    }
+
+    thead tr {
+      background-color: #009879;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    tbody {
+      tr {
+
+        &:nth-of-type(even) {
+
+        }
+      }
+    }
+  }
+
+}
+
+
+.ui-content-text {
+  h3 {
+    font-family: 'PT Sans Caption';
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 8px;
+  }
+}

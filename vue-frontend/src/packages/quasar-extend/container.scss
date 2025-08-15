@@ -1,0 +1,47 @@
+
+@mixin make-containers($containers: $containers, $breakpoints: $sizes) {
+  @each $breakpoint, $container in $containers {
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+
+      $padding: map-get($container, "padding");
+      $max-width: map-get($container, "max-width");
+
+      @if $max-width {
+        max-width: $max-width + $padding * 2;
+      }
+
+      @if $padding {
+        &:not(.nopad) {
+          padding-left: $padding;
+          padding-right: $padding;
+        }
+      }
+    }
+  }
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+
+  &.nopad-lt-md {
+    @media (max-width: $breakpoint-sm-max) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  &.nopad-lt-lg {
+    @media (max-width: $breakpoint-md-max) {
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+  }
+
+  @include make-containers();
+}
+
+
+

@@ -1,0 +1,17 @@
+@each $font-size-name, $font-size-value in $font-sizes {
+  .s-font-#{$font-size-name} {
+    font-size: $font-size-value !important;
+  }
+}
+
+@each $breakpoint, $breakpoint-width in $sizes {
+  @each $font-size-name, $font-size-value in $font-sizes {
+    @include media-breakpoint-up($breakpoint, $sizes) {
+      .s-font-#{$breakpoint}-#{$font-size-name} {
+        font-size: $font-size-value !important;
+      }
+    }
+  }
+}
+
+

@@ -1,0 +1,25 @@
+$headers-font-family: $typography-font-family !default;
+$subheaders-font-family: $headers-font-family !default;
+
+h1, h2, h3 {
+  font-family: $headers-font-family;
+}
+
+h4, h5, h6 {
+  font-family: $subheaders-font-family;
+}
+
+.font-normal
+{
+  font-family: $typography-font-family;
+}
+
+.font-heading {
+  font-family: $headers-font-family;
+}
+
+.font-subheading {
+  font-family: $subheaders-font-family;
+}
+
+

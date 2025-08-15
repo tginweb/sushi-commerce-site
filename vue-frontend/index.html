@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= productName %></title>
+
+    <meta charset="utf-8">
+    <meta name="description" content="<%= productDescription %>">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width<% if (ctx.mode.cordova || ctx.mode.capacitor) { %>, viewport-fit=cover<% } %>">
+
+    <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128x128.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        #page-preloader {
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 10000;
+            position: fixed;
+            text-align: center;
+        }
+
+        #page-preloader .__inner {
+            display: inline-block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .our_loader {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .logo_ball {
+            width: 183px;
+
+        }
+
+        .body_logo {
+            margin-top: -261px;
+            width: 200px;
+            margin-left: -10px;
+        }
+
+        @keyframes loader {
+            from {
+                transform: rotate(0)
+            }
+            50% {
+                transform: rotate(180deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes loader2 {
+            from {
+                transform: rotate(0)
+            }
+            59% {
+                transform: rotate(180deg)
+            }
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .loader {
+            width: 183px;
+            height: 261px;
+            /*position: relative;*/
+            animation: loader 2s infinite ease-in-out;
+        }
+
+        .loader2 {
+            width: 183px;
+            height: 261px;
+            /*position: relative;*/
+            animation: loader2 2s infinite ease-in-out;
+        }
+
+    </style>
+
+    <script>
+
+        var hidePreloader = function () {
+            setTimeout(() => {
+                var preloader = document.querySelector('#page-preloader')
+                if (preloader) {
+                    preloader.style.display = 'none';
+                }
+            }, 200)
+        }
+
+        var showPreloader = function () {
+            var preloader = document.querySelector('#page-preloader')
+            if (preloader) {
+                preloader.style.display = 'block';
+            }
+        }
+
+        if (typeof window !== 'undefined') {
+            showPreloader();
+        }
+
+    </script>
+</head>
+<body>
+
+<div id="page-preloader">
+    <div class="__inner">
+
+        <div class="our_loader">
+            <div>
+                <div class="loader">
+                    <div class="logo_ball">
+                        <svg viewBox="0 0 144.4 206.49" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: #222220;
+                                }</style>
+                            </defs>
+                            <title>logoРесурс 8</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Logo">
+                                    <path class="cls-1"
+                                          d="M25.64,206.49a25.64,25.64,0,1,1,25.63-25.63A25.66,25.66,0,0,1,25.64,206.49Zm0-46.57a20.94,20.94,0,1,0,20.93,20.94A21,21,0,0,0,25.64,159.92Z"/>
+                                    <path class="cls-1"
+                                          d="M118.77,51.27A25.64,25.64,0,1,1,144.4,25.64,25.66,25.66,0,0,1,118.77,51.27Zm0-46.57A20.94,20.94,0,1,0,139.7,25.64,21,21,0,0,0,118.77,4.7Z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="loader2">
+                    <div class="logo body_logo">
+                        <svg viewBox="0 0 160.31 206.49" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>.cls-1 {
+                                    fill: #222220;
+                                }</style>
+                            </defs>
+                            <title>logoРесурс 9</title>
+                            <g id="Слой_2" data-name="Слой 2">
+                                <g id="Logo">
+                                    <path class="cls-1"
+                                          d="M73.92,206.49H69.85l2-3.52a44.23,44.23,0,0,0-10-56.08l-37.6-31C8.63,103.05,0,86.17,0,68.32,0,30.65,38.75,0,86.38,0h4.08l-2,3.53A44.22,44.22,0,0,0,98.7,59.84L136,90.67c15.65,12.79,24.28,29.66,24.28,47.5C160.31,175.85,121.56,206.49,73.92,206.49ZM82.46,4.77C39.24,6.37,4.7,34.26,4.7,68.32c0,16.41,8,32,22.59,43.9L64.9,143.27a48.92,48.92,0,0,1,12.94,58.45c43.23-1.6,77.77-29.49,77.77-63.55,0-16.4-8-32-22.56-43.87L95.71,63.47A49,49,0,0,1,82.46,4.77Z"/>
+                                </g>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- quasar:entry-point -->
+
+
+</body>
+</html>

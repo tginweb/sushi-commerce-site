@@ -1,0 +1,9 @@
+
+@each $breakpoint, $breakpoint-width in $sizes {
+  @include media-breakpoint-up($breakpoint, $sizes) {
+    .no-wrap-#{$breakpoint} {
+      flex-wrap: nowrap;
+    }
+  }
+}
+

@@ -1,0 +1,120 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+.menu-up-enter-active,
+.menu-up-leave-active {
+  transition: transform .5s;
+}
+
+.menu-up-enter,
+.menu-up-leave-to {
+  transform: translateY(-41px);
+}
+
+
+.menu-up-mobile-enter-active,
+.menu-up-mobile-leave-active {
+  transition: transform .5s;
+}
+
+.menu-up-mobile-enter,
+.menu-up-mobile-leave-to {
+  transform: translateY(-71px);
+}
+
+
+.slide-leave-active,
+.slide-enter-active {
+  transition: max-height 1s;
+}
+.slide-enter,
+.slide-leave-to {
+  max-height: 0px;
+  overflow: hidden;
+}
+
+
+/* Контейнер списка */
+.list {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+
+/* Общие настройки анимации */
+.list-move,
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Анимация появления */
+.list-enter-from {
+  opacity: 0;
+  transform: scale(0.8) translateY(20px);
+}
+
+.list-enter-to {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+/* Анимация исчезновения */
+.list-leave-from {
+  opacity: 1;
+  transform: scale(1);
+  height: auto;
+}
+
+.list-leave-to {
+  opacity: 0;
+  transform: scale(0.8);
+  height: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.list-leave-active {
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+/* Анимация перемещения элементов */
+.list-move {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Оптимизация */
+.list-enter-active,
+.list-leave-active {
+  will-change: transform, opacity, height;
+}
+
+
+.collapse-enter-active,
+.collapse-leave-active {
+  transition: max-height 0.4s ease-in-out;
+  overflow: hidden; /* Crucial for smooth height transition */
+}
+
+.collapse-enter-from,
+.collapse-leave-to {
+  max-height: 0;
+}
+
+.collapse-enter-to,
+.collapse-leave-from {
+  /* Set to auto or a specific height for the expanded state */
+  max-height: 800px; 
+}

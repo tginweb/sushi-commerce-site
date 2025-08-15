@@ -1,0 +1,40 @@
+
+.s-text-nowrap {
+  white-space: nowrap;
+}
+
+.s-align-left {
+  text-align: left;
+}
+
+.s-align-right {
+  text-align: right;
+}
+
+.s-align-center {
+  text-align: center;
+}
+
+@media (min-width: $breakpoint-sm-max) {
+  .s-align-sm-left {
+    text-align: left;
+  }
+  .s-align-sm-right {
+    text-align: right;
+  }
+  .s-align-sm-center {
+    text-align: center;
+  }
+}
+
+@media (min-width: $breakpoint-md-max) {
+  .s-align-md-left {
+    text-align: left;
+  }
+  .s-align-md-right {
+    text-align: right;
+  }
+  .s-align-md-center {
+    text-align: center;
+  }
+}
